@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SmartHome Companion</string>
+    <string name="fragment_webview_greeting">Enter URL to open the web site...</string>
+    <string name="fragment_resource_view_greeting">Discovering resources...</string>
+    <string name="msg_loading">Loading...</string>
+    <string name="option_http_put">Use PUT request</string>
+</resources>

@@ -1,0 +1,24 @@
+{
+  "controls": [
+    {
+      "name": "Smart Home 3D",
+      "rt": "http://0.0.0.0:8080"
+    },
+    {
+      "name": "Cloud Admin Portal",
+      "rt": "http://0.0.0.0:3031"
+    },
+    {
+      "name": "Cloud Management Console",
+      "rt": "http://0.0.0.0:3030"
+    },
+    {
+      "name": "LED",
+      "rt": "oic.r.switch.binary"
+    },
+    {
+      "name": "LCD Backlight",
+      "rt": "oic.r.colour.rgb"
+    }
+  ]
+}

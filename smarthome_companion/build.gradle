@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "com.intel.otc.iot.smarthome.companion"
+        minSdkVersion 21
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    // Configure Product Flavors
+    // Different versionCode is required for each variant for distributing Multiple APK to Google Play
+    // https://developer.android.com/studio/build/build-variants.html#product-flavors
+    productFlavors {
+        x86 {
+            versionName "1.0-x86"
+        }
+        armeabi {
+            versionName "1.0-armeabi"
+        }
+        armeabiV7a {
+            versionName "1.0-armeabi-v7a"
+        }
+    }
+}
+
+repositories {
+    flatDir {
+        dirs '../iotivity-1.1.1 base library'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:recyclerview-v7:23.+'
+    compile 'com.android.support:cardview-v7:23.+'
+    compile 'com.larswerkman:HoloColorPicker:1.5'
+    x86Compile(name: 'iotivity-base-x86-release', ext:'aar')
+    armeabiCompile(name: 'iotivity-base-armeabi-release', ext:'aar')
+    armeabiV7aCompile(name: 'iotivity-base-armeabi-v7a-release', ext:'aar')
+}
