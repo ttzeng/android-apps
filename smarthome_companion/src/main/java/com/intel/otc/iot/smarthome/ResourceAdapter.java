@@ -21,6 +21,7 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private enum CardTypes {
         SwitchBinary,
         ColorRGB,
+        Motion,
     }
 
     private Context mContext;
@@ -31,6 +32,7 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mContext = context;
         mSupportedResourceType.put(CardSwitchBinary.RESOURCE_TYPE, CardTypes.SwitchBinary);
         mSupportedResourceType.put(CardColorRGB.RESOURCE_TYPE, CardTypes.ColorRGB);
+        mSupportedResourceType.put(CardSensedMotion.RESOURCE_TYPE, CardTypes.Motion);
     }
 
     @Override
@@ -49,6 +51,9 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else if (viewType == CardTypes.ColorRGB.ordinal()) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_colorpicker, parent, false);
             card = new CardColorRGB(v, mContext);
+        } else if (viewType == CardTypes.Motion.ordinal()) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_icon, parent, false);
+            card = new CardSensedMotion(v, mContext);
         }
         return card;
     }
