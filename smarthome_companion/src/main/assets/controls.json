@@ -17,6 +17,10 @@
       "rt": "oic.r.sensor.motion"
     },
     {
+      "name": "MQ2 Gas Sensor",
+      "rt": "oic.r.sensor.carbondioxide"
+    },
+    {
       "name": "LED",
       "rt": "oic.r.switch.binary"
     },

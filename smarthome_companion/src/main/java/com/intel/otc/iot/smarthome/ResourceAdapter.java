@@ -22,6 +22,7 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         SwitchBinary,
         ColorRGB,
         Motion,
+        Gas,
     }
 
     private Context mContext;
@@ -33,6 +34,7 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mSupportedResourceType.put(CardSwitchBinary.RESOURCE_TYPE, CardTypes.SwitchBinary);
         mSupportedResourceType.put(CardColorRGB.RESOURCE_TYPE, CardTypes.ColorRGB);
         mSupportedResourceType.put(CardSensedMotion.RESOURCE_TYPE, CardTypes.Motion);
+        mSupportedResourceType.put(CardSensedCarbonDioxide.RESOURCE_TYPE, CardTypes.Gas);
     }
 
     @Override
@@ -54,6 +56,9 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else if (viewType == CardTypes.Motion.ordinal()) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_icon, parent, false);
             card = new CardSensedMotion(v, mContext);
+        } else if (viewType == CardTypes.Gas.ordinal()) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_icon, parent, false);
+            card = new CardSensedCarbonDioxide(v, mContext);
         }
         return card;
     }
