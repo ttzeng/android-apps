@@ -21,8 +21,20 @@
       "rt": "oic.r.sensor.carbondioxide"
     },
     {
+      "name": "Button",
+      "rt": "oic.r.button"
+    },
+    {
+      "name": "Fan",
+      "rt": "oic.r.fan"
+    },
+    {
       "name": "LED",
       "rt": "oic.r.switch.binary"
+    },
+    {
+      "name": "Buzzer",
+      "rt": "oic.r.buzzer"
     },
     {
       "name": "LCD Backlight",

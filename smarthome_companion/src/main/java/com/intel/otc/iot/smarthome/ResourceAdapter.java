@@ -23,6 +23,9 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         ColorRGB,
         Motion,
         Gas,
+        Fan,
+        Button,
+        Buzzer,
     }
 
     private Context mContext;
@@ -35,6 +38,9 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mSupportedResourceType.put(CardColorRGB.RESOURCE_TYPE, CardTypes.ColorRGB);
         mSupportedResourceType.put(CardSensedMotion.RESOURCE_TYPE, CardTypes.Motion);
         mSupportedResourceType.put(CardSensedCarbonDioxide.RESOURCE_TYPE, CardTypes.Gas);
+        mSupportedResourceType.put(CardFan.RESOURCE_TYPE, CardTypes.Fan);
+        mSupportedResourceType.put(CardButton.RESOURCE_TYPE, CardTypes.Button);
+        mSupportedResourceType.put(CardBuzzer.RESOURCE_TYPE, CardTypes.Buzzer);
     }
 
     @Override
@@ -59,6 +65,15 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else if (viewType == CardTypes.Gas.ordinal()) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_icon, parent, false);
             card = new CardSensedCarbonDioxide(v, mContext);
+        } else if (viewType == CardTypes.Fan.ordinal()) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_onoff, parent, false);
+            card = new CardFan(v, mContext);
+        } else if (viewType == CardTypes.Button.ordinal()) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_onoff, parent, false);
+            card = new CardButton(v, mContext);
+        } else if (viewType == CardTypes.Buzzer.ordinal()) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_onoff, parent, false);
+            card = new CardBuzzer(v, mContext);
         }
         return card;
     }

@@ -20,8 +20,8 @@ public class CardSwitchBinary extends CardOcResource {
     public  static final String RESOURCE_TYPE = "oic.r.switch.binary";
     private static final String KEY_VALUE = "value";
 
-    private TextView mResourceId;
-    private Switch mSwitchOnOff;
+    protected TextView mResourceId;
+    protected Switch mSwitchOnOff;
 
     CardSwitchBinary(View parentView, Context context) {
         super(parentView, context);
