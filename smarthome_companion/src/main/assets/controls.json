@@ -43,6 +43,10 @@
     {
       "name": "LCD Backlight",
       "rt": "oic.r.colour.rgb"
+    },
+    {
+      "name": "Audio Control",
+      "rt": "oic.r.audio"
     }
   ]
 }

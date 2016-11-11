@@ -27,6 +27,7 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         Fan,
         Button,
         Buzzer,
+        AudioControl,
     }
 
     private Context mContext;
@@ -43,6 +44,7 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mSupportedResourceType.put(CardFan.RESOURCE_TYPE, CardTypes.Fan);
         mSupportedResourceType.put(CardButton.RESOURCE_TYPE, CardTypes.Button);
         mSupportedResourceType.put(CardBuzzer.RESOURCE_TYPE, CardTypes.Buzzer);
+        mSupportedResourceType.put(CardAudioControl.RESOURCE_TYPE, CardTypes.AudioControl);
     }
 
     @Override
@@ -79,6 +81,9 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else if (viewType == CardTypes.Buzzer.ordinal()) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_onoff, parent, false);
             card = new CardBuzzer(v, mContext);
+        } else if (viewType == CardTypes.AudioControl.ordinal()) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_audio_volume, parent, false);
+            card = new CardAudioControl(v, mContext);
         }
         return card;
     }
