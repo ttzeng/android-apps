@@ -21,6 +21,10 @@
       "rt": "oic.r.sensor.carbondioxide"
     },
     {
+      "name": "Ambient Light",
+      "rt": "oic.r.sensor.illuminance"
+    },
+    {
       "name": "Button",
       "rt": "oic.r.button"
     },

@@ -4,4 +4,5 @@
     <string name="fragment_resource_view_greeting">Discovering resources...</string>
     <string name="msg_loading">Loading...</string>
     <string name="option_http_put">Use PUT request</string>
+    <string name="unit_illuminance">lux</string>
 </resources>
