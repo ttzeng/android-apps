@@ -47,6 +47,10 @@
     {
       "name": "Audio Control",
       "rt": "oic.r.audio"
+    },
+    {
+      "name": "MP3 Player",
+      "rt": "x.com.intel.demo.mp3player"
     }
   ]
 }

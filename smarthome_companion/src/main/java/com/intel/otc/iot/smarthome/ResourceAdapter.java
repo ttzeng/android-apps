@@ -28,6 +28,7 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         Button,
         Buzzer,
         AudioControl,
+        MP3Player,
     }
 
     private Context mContext;
@@ -45,6 +46,7 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mSupportedResourceType.put(CardButton.RESOURCE_TYPE, CardTypes.Button);
         mSupportedResourceType.put(CardBuzzer.RESOURCE_TYPE, CardTypes.Buzzer);
         mSupportedResourceType.put(CardAudioControl.RESOURCE_TYPE, CardTypes.AudioControl);
+        mSupportedResourceType.put(CardMp3Player.RESOURCE_TYPE, CardTypes.MP3Player);
     }
 
     @Override
@@ -84,6 +86,9 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else if (viewType == CardTypes.AudioControl.ordinal()) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_audio_volume, parent, false);
             card = new CardAudioControl(v, mContext);
+        } else if (viewType == CardTypes.MP3Player.ordinal()) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_audioplayer, parent, false);
+            card = new CardMp3Player(v, mContext);
         }
         return card;
     }
