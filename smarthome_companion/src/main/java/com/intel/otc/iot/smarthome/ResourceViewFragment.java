@@ -86,6 +86,11 @@ public class ResourceViewFragment extends Fragment implements
                 CardOcResource.__set_representation_with_put = !CardOcResource.__set_representation_with_put;
                 item.setChecked(CardOcResource.__set_representation_with_put);
                 return true;
+            case R.id.menuitem_clear:
+                mResourceFound.clear();
+                mResourceAdapter.clear();
+                setActionBarTitle(null);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
