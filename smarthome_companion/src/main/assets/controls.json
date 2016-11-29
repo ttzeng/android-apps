@@ -45,6 +45,10 @@
       "rt": "oic.r.colour.rgb"
     },
     {
+      "name": "Power Meter",
+      "rt": "oic.r.energy.consumption"
+    },
+    {
       "name": "Audio Control",
       "rt": "oic.r.audio"
     },

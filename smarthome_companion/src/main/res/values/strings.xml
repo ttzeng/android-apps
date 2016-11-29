@@ -5,4 +5,5 @@
     <string name="msg_loading">Loading...</string>
     <string name="option_http_put">Use PUT request</string>
     <string name="unit_illuminance">lux</string>
+    <string name="unit_power">mW</string>
 </resources>
