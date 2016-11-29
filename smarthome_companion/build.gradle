@@ -35,7 +35,7 @@ android {
 
 repositories {
     flatDir {
-        dirs '../iotivity-1.1.1 base library'
+        dirs '../iotivity-1.1.1'
     }
 }
 
