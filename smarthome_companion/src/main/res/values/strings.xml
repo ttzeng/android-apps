@@ -6,4 +6,7 @@
     <string name="option_http_put">Use PUT request</string>
     <string name="unit_illuminance">lux</string>
     <string name="unit_power">mW</string>
+    <string name="unit_temperature">°C</string>
+    <string name="unit_humidity">%</string>
+    <string name="unit_pressure">hPa</string>
 </resources>

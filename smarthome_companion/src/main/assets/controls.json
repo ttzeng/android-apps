@@ -45,6 +45,10 @@
       "rt": "oic.r.colour.rgb"
     },
     {
+      "name": "Environmental Sensor",
+      "rt": "oic.r.sensor.environment"
+    },
+    {
       "name": "Power Meter",
       "rt": "oic.r.energy.consumption"
     },
