@@ -1,13 +1,16 @@
 package com.intel.otc.brillo.example;
 
 import android.app.Activity;
-import android.hardware.pio.Gpio;
-import android.hardware.pio.PeripheralManagerService;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.system.ErrnoException;
 import android.util.Log;
+
+import com.google.android.things.pio.Gpio;
+import com.google.android.things.pio.PeripheralManagerService;
+
+import java.io.IOException;
+import java.util.List;
 
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -16,7 +19,6 @@ public class MainActivity extends Activity {
     private static final String DEVICE_JOULE = "joule";
 
     private Handler mHandler = new Handler();
-    private Runnable mRunnable = this::myService;
 
     Gpio mLed;
 
@@ -40,7 +42,11 @@ public class MainActivity extends Activity {
         mHandler.removeCallbacks(mRunnable);
 
         if (mLed != null) {
-            mLed.close();
+            try {
+                mLed.close();
+            } catch (IOException e) {
+                Log.e(TAG, e.toString());
+            }
             mLed = null;
         }
     }
@@ -51,7 +57,7 @@ public class MainActivity extends Activity {
         try {
             gpio = service.openGpio(getOnBoardLedName());
             gpio.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW);
-        } catch (ErrnoException e) {
+        } catch (IOException e) {
             Log.e(TAG, e.toString());
             gpio = null;
         }
@@ -67,22 +73,29 @@ public class MainActivity extends Activity {
     }
 
     String getOnBoardLedName() {
-        if (isIntelEdisonBoard())
-            return "IO13";
+        if (isIntelEdisonBoard()) {
+            PeripheralManagerService service = new PeripheralManagerService();
+            List<String> gpioNames = service.getGpioList();
+            return (gpioNames.size() > 0 && gpioNames.get(0).startsWith("IO"))?
+                    "IO13" : "GP45";
+        }
         if (isIntelJouleBoard())
             return "LED100";
 
         throw new IllegalStateException("Unknown Build.DEVICE " + Build.DEVICE);
     }
 
-    private void myService() {
-        try {
-            if (mLed != null)
-                mLed.setValue(!mLed.getValue());
-        } catch (ErrnoException e) {
-            Log.e(TAG, e.toString());
-        }
+    private Runnable mRunnable = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                if (mLed != null)
+                    mLed.setValue(!mLed.getValue());
+            } catch (IOException e) {
+                Log.e(TAG, e.toString());
+            }
 
-        mHandler.postDelayed(mRunnable, SERVICE_INTERVAL_IN_MSEC);
-    }
+            mHandler.postDelayed(mRunnable, SERVICE_INTERVAL_IN_MSEC);
+        }
+    };
 }
