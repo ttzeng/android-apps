@@ -15,14 +15,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/label_title" />
 
-        <TextView
+        <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/label_display"
+            android:id="@+id/spinner_display"
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/btn_play_pause"
-            android:layout_alignStart="@+id/label_title"
-            android:background="@android:color/holo_orange_light" />
+            android:layout_alignStart="@+id/label_title" />
 
         <ImageButton
             android:layout_width="wrap_content"
