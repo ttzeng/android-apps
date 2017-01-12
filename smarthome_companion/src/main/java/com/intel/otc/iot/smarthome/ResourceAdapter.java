@@ -129,8 +129,11 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void clear() {
         try {
-            for (Pair<CardTypes, OcResource> card : mCardList)
-                card.second.cancelObserve();
+            for (Pair<CardTypes, OcResource> card : mCardList) {
+                OcResource resource = card.second;
+                if (resource.isObservable())
+                    card.second.cancelObserve();
+            }
         } catch (OcException e) {
             Log.e(TAG, e.toString());
         }

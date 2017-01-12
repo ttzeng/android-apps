@@ -1,1 +1,1 @@
-include ':smarthome_companion', ':iotivity-1.1.1', ':blink'
+include ':smarthome_companion', ':iotivity-1.2.1', ':blink'

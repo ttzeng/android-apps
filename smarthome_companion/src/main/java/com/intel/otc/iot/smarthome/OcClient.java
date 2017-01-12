@@ -64,6 +64,10 @@ public class OcClient implements OcPlatform.OnResourceFoundListener {
 
     @Override
     public void onResourceFound(OcResource ocResource) {
+        if (null == ocResource) {
+            Log.e(TAG, "Invalid resource found");
+            return;
+        }
         if (!mResourceFound.containsKey(ocResource.getUniqueIdentifier())) {
             Log.d(TAG, "Found resource " + ocResource.getHost() + ocResource.getUri() +
                         " for the first time on server with ID " + ocResource.getServerId());
@@ -73,5 +77,10 @@ public class OcClient implements OcPlatform.OnResourceFoundListener {
             if (null != onResourceFoundListener)
                 onResourceFoundListener.onResourceFound(ocResource);
         }
+    }
+
+    @Override
+    public void onFindResourceFailed(Throwable throwable, String s) {
+        Log.e(TAG, "Resource discovery failure: " + throwable.toString());
     }
 }
