@@ -33,12 +33,6 @@ android {
     }
 }
 
-repositories {
-    flatDir {
-        dirs '../iotivity-1.2.1'
-    }
-}
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.4.0'
@@ -46,7 +40,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.+'
     compile 'com.android.support:cardview-v7:23.+'
     compile 'com.larswerkman:HoloColorPicker:1.5'
-    x86Compile(name: 'iotivity-base-x86-release', ext:'aar')
-    armeabiCompile(name: 'iotivity-base-armeabi-release', ext:'aar')
-    armeabiV7aCompile(name: 'iotivity-base-armeabi-v7a-release', ext:'aar')
+    x86Compile 'org.iotivity:base-x86:1.2.1'
+    armeabiCompile 'org.iotivity:base-armeabi:1.2.1'
+    armeabiV7aCompile 'org.iotivity:base-armeabi-v7a:1.2.1'
 }

@@ -1,8 +1,0 @@
-configurations.create("x86")
-artifacts.add("x86", file('iotivity-base-x86-release.aar'))
-
-configurations.create("armeabi")
-artifacts.add("armeabi", file('iotivity-base-armeabi-release.aar'))
-
-configurations.create("armeabi-v7a")
-artifacts.add("armeabi-v7a", file('iotivity-base-armeabi-v7a-release.aar'))
