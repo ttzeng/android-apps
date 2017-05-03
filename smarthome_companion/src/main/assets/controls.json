@@ -53,6 +53,10 @@
       "rt": "oic.r.energy.consumption"
     },
     {
+      "name": "Solar Panel",
+      "rt": "oic.r.solar"
+    },
+    {
       "name": "Audio Control",
       "rt": "oic.r.audio"
     },

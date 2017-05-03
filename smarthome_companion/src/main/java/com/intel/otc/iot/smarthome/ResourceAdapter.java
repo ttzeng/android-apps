@@ -29,6 +29,7 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         Buzzer,
         Environmental,
         EnergyConsumption,
+        SolarPanel,
         AudioControl,
         MP3Player,
     }
@@ -49,6 +50,7 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mSupportedResourceType.put(CardBuzzer.RESOURCE_TYPE, CardTypes.Buzzer);
         mSupportedResourceType.put(CardEnvironmental.RESOURCE_TYPE, CardTypes.Environmental);
         mSupportedResourceType.put(CardPowerMeter.RESOURCE_TYPE, CardTypes.EnergyConsumption);
+        mSupportedResourceType.put(CardSolarPanel.RESOURCE_TYPE, CardTypes.SolarPanel);
         mSupportedResourceType.put(CardAudioControl.RESOURCE_TYPE, CardTypes.AudioControl);
         mSupportedResourceType.put(CardMp3Player.RESOURCE_TYPE, CardTypes.MP3Player);
     }
@@ -93,6 +95,9 @@ public class ResourceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else if (viewType == CardTypes.EnergyConsumption.ordinal()) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_value_table, parent, false);
             card = new CardPowerMeter(v, mContext);
+        } else if (viewType == CardTypes.SolarPanel.ordinal()) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_solar_panel, parent, false);
+            card = new CardSolarPanel(v, mContext);
         } else if (viewType == CardTypes.AudioControl.ordinal()) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_audio_volume, parent, false);
             card = new CardAudioControl(v, mContext);
