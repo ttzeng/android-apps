@@ -80,7 +80,7 @@ public class MainActivity extends Activity {
                     "IO13" : "GP45";
         }
         if (isIntelJouleBoard())
-            return "LED100";
+            return "J6_25";
 
         throw new IllegalStateException("Unknown Build.DEVICE " + Build.DEVICE);
     }
