@@ -17,20 +17,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    // Configure Product Flavors
-    // Different versionCode is required for each variant for distributing Multiple APK to Google Play
-    // https://developer.android.com/studio/build/build-variants.html#product-flavors
-    productFlavors {
-        x86 {
-            versionName "1.0-x86"
-        }
-        armeabi {
-            versionName "1.0-armeabi"
-        }
-        armeabiV7a {
-            versionName "1.0-armeabi-v7a"
-        }
-    }
 }
 
 dependencies {
@@ -40,7 +26,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.+'
     compile 'com.android.support:cardview-v7:23.+'
     compile 'com.larswerkman:HoloColorPicker:1.5'
-    x86Compile 'org.iotivity:base-x86:1.3.0'
-    armeabiCompile 'org.iotivity:base-armeabi:1.3.0'
-    armeabiV7aCompile 'org.iotivity:base-armeabi-v7a:1.3.0'
+    compile 'org.iotivity:base:1.3.0'
 }
