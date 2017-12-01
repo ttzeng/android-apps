@@ -1,1 +1,1 @@
-include ':smarthome_companion', ':blink'
+include ':smarthome_companion', ':blink', ':lcd'
