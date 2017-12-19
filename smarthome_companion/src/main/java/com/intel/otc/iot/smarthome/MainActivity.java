@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements
     private FragmentManager fragmentManager;
     private WebViewFragment fragmentWebview;
     private ResourceViewFragment fragmentResourceView;
+    private ProvisioningManagerFragment fragmentProvisioning;
     private OcClient ocClient;
 
     @Override
@@ -47,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements
             fragmentResourceView = new ResourceViewFragment();
             ft.add(R.id.fragmentContainer, fragmentResourceView).detach(fragmentResourceView);
         }
+        if (null == fragmentProvisioning) {
+            fragmentProvisioning = new ProvisioningManagerFragment();
+            ft.add(R.id.fragmentContainer, fragmentProvisioning).detach(fragmentProvisioning);
+        }
         ft.commit();
         // Configure platform as an OCF client
         ocClient = new OcClient(this, fragmentResourceView);
@@ -69,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         ControlAdapter.Control ctrl = (ControlAdapter.Control) mAdapter.getItem(i);
+        final String schemaSmarthomeTool = "smarthome://";
         if (ctrl == null || ctrl.ResourceType == null)
             return;
         if (ctrl.ResourceType.startsWith("http://") || ctrl.ResourceType.startsWith("https://")) {
@@ -76,6 +82,10 @@ public class MainActivity extends AppCompatActivity implements
             if (!fragmentWebview.isVisible())
                 attachFragment(fragmentWebview);
             else fragmentWebview.loadUrl(ctrl.ResourceType);
+        } else if (ctrl.ResourceType.startsWith(schemaSmarthomeTool)) {
+            String feature = ctrl.ResourceType.substring(schemaSmarthomeTool.length());
+            if (feature.equals("provisioning") && !fragmentProvisioning.isVisible())
+                attachFragment(fragmentProvisioning);
         } else {
             if (!fragmentResourceView.isVisible())
                 attachFragment(fragmentResourceView);
@@ -85,7 +95,9 @@ public class MainActivity extends AppCompatActivity implements
 
     private void attachFragment(Fragment fragment) {
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.detach(fragmentWebview).detach(fragmentResourceView);
+        ft.detach(fragmentProvisioning)
+          .detach(fragmentWebview)
+          .detach(fragmentResourceView);
         if (null != fragment)
             ft.attach(fragment);
         ft.commit();

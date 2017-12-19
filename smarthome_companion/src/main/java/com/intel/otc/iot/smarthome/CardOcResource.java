@@ -1,9 +1,11 @@
 package com.intel.otc.iot.smarthome;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import org.iotivity.base.ObserveType;
 import org.iotivity.base.OcException;
@@ -128,8 +130,15 @@ abstract class CardOcResource extends RecyclerView.ViewHolder implements
 
     protected synchronized void raiseException(String op, Throwable throwable) {
         if (throwable instanceof OcException) {
-            OcException ocException = (OcException) throwable;
+            final OcException ocException = (OcException) throwable;
             Log.e(TAG, "Failed to " + op + " representation [" + ocException.getErrorCode() + "]\n" + ocException.toString());
+            ((Activity) mContext).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(mContext, mOcResource.getHost() + ':' + mOcResource.getUri() + '\n' +
+                                             ocException.getErrorCode().toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

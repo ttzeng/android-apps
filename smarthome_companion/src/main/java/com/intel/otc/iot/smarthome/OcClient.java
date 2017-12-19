@@ -21,10 +21,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import static android.os.Environment.getExternalStorageDirectory;
 
 public class OcClient implements OcPlatform.OnResourceFoundListener {
     private static final String TAG = OcClient.class.getSimpleName();
@@ -40,9 +39,7 @@ public class OcClient implements OcPlatform.OnResourceFoundListener {
     private Map<OcResourceIdentifier, OcResource> mResourceFound = new HashMap<>();
 
     public OcClient(Context context, OnResourceFound listener) {
-        // TODO: store files in package installed folder in /data with getFilesDir()
-        dbPath = getExternalStorageDirectory().getAbsolutePath() + File.separator
-               + context.getPackageName() + File.separator;
+        dbPath = context.getFilesDir().getPath() + File.separator;
         File dbDir = new File(dbPath);
         if (!(dbDir.isDirectory())) {
             // Create the folder if not exist
@@ -136,6 +133,17 @@ public class OcClient implements OcPlatform.OnResourceFoundListener {
             mResourceFound.put(ocResource.getUniqueIdentifier(), ocResource);
         } else {
             Log.d(TAG, "Found resource " + ocResource.getHost() + ocResource.getUri());
+            String host = ocResource.getHost();
+            if (host.startsWith("coap://")     || host.startsWith("coaps://") ||
+                host.startsWith("coap+tcp://") || host.startsWith("coaps+tcp://")) {
+                // get the endpoints information of this resource
+                List<String> ep = ocResource.getAllHosts();
+                for (String s : ep) {
+                    Log.d(TAG, "Changing the host of this resource to " + s);
+                    ocResource.setHost(s);
+                    break;
+                }
+            }
             if (null != onResourceFoundListener)
                 onResourceFoundListener.onResourceFound(ocResource);
         }

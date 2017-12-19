@@ -1,6 +1,10 @@
 {
   "controls": [
     {
+      "name": "Provisioning",
+      "rt": "smarthome://provisioning"
+    },
+    {
       "name": "Smart Home 3D",
       "rt": "http://0.0.0.0:8080"
     },

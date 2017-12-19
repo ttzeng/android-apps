@@ -2,8 +2,6 @@ package com.intel.otc.iot.smarthome;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,12 +19,11 @@ import org.iotivity.base.OcResourceIdentifier;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ResourceViewFragment extends Fragment implements
+public class ResourceViewFragment extends BaseFragment implements
         OcClient.OnResourceFound
 {
     private static final String TAG = ResourceViewFragment.class.getSimpleName();
 
-    private Context mContext;
     private ResourceAdapter mResourceAdapter;
     private Map<OcResourceIdentifier, OcResource> mResourceFound;
 
@@ -102,16 +99,5 @@ public class ResourceViewFragment extends Fragment implements
             mResourceAdapter.add(resource);
             setActionBarTitle(mResourceFound.size() + " resources");
         }
-    }
-
-    private void setActionBarTitle(final CharSequence title) {
-        final AppCompatActivity activity = (MainActivity) mContext;
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                activity.getSupportActionBar().setTitle(
-                        getResources().getText(R.string.app_name) + ((title != null)? (" - " + title) : ""));
-            }
-        });
     }
 }

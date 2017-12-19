@@ -3,8 +3,6 @@ package com.intel.otc.iot.smarthome;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,13 +20,12 @@ import android.widget.Toast;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class WebViewFragment extends Fragment {
+public class WebViewFragment extends BaseFragment {
     private static final String TAG = WebViewFragment.class.getSimpleName();
 
     public interface OnWebviewPageLoaded {
         void onWebviewPageLoaded(String url, Object arg);
     }
-    private Context mContext;
     private WebView webView;
     private String mUrlLast;
     private OnWebviewPageLoaded mPageLoadedListener;
@@ -131,16 +128,5 @@ public class WebViewFragment extends Fragment {
             url = "http://" + url;
         webView.loadUrl(url);
         setActionBarTitle(getResources().getText(R.string.msg_loading));
-    }
-
-    private void setActionBarTitle(final CharSequence title) {
-        final AppCompatActivity activity = (MainActivity) mContext;
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                activity.getSupportActionBar().setTitle(
-                        getResources().getText(R.string.app_name) + ((title != null)? (" - " + title) : ""));
-            }
-        });
     }
 }
