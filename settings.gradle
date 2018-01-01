@@ -1,1 +1,1 @@
-include ':smarthome_companion', ':blink', ':lcd', ':led'
+include ':smarthome_companion', ':iotivity-console', ':blink', ':lcd', ':led'
